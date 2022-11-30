@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.template import loader
 # from .apps import WebappConfig
 from django.http import HttpResponse, JsonResponse
 # Create your views here.
@@ -14,14 +15,20 @@ def index(request):
     return HttpResponse("Welcome to the sentiment analyzer of this app!")
 
 
-def get_text_sentiment(request):
+def get_text_sentiment(request, text):
 
     # PERFORM SENTIMENT ANALYSIS HERE
 
-    sentimentResult = 0
+    # sampleText = "I am excited and thrilled to use this sentiment analyzer!!!"
 
-    sampleText = "I am excited and thrilled to use this sentiment analyzer!!!"
+    sampleText = text.replace("-", " ")
 
     sia = SentimentIntensityAnalyzer()  # the actual analyzer
     sentimentResult = sia.polarity_scores(sampleText)
+
+    template = loader.get_template('myfirst.html')
+
+    # gives overall result
     return HttpResponse("Result of text sentiment here: " + str(sentimentResult['compound']))
+
+    # return HttpResponse(template.render())
