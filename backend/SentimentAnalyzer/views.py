@@ -29,6 +29,9 @@ def get_text_sentiment(request, text):
     template = loader.get_template('myfirst.html')
 
     # gives overall result
-    return HttpResponse("Result of text sentiment here: " + str(sentimentResult['compound']))
+    data = {
+        'result': str(sentimentResult['compound'])
+    }
+    return JsonResponse(data)
 
     # return HttpResponse(template.render())
