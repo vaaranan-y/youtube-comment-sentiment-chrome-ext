@@ -4,6 +4,9 @@ from django.db import models
 
 
 class Comment(models.Model):
+    videoId = models.CharField(max_length=150)
+    videoTitle = models.CharField(max_length=150)
+    authorId = models.CharField(max_length=150)
     author = models.CharField(max_length=150)
     comment_body = models.TextField(blank=True)
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
