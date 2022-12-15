@@ -22,7 +22,7 @@ def get_text_sentiment_helper(text):
 
     sia = SentimentIntensityAnalyzer()  # the actual analyzer
     sentimentResult = sia.polarity_scores(text)
-    return str(sentimentResult['compound'])
+    return sentimentResult['compound']
 
 
 def get_video_sentiment(request, videoId):
@@ -36,11 +36,17 @@ def get_video_sentiment(request, videoId):
     # print(res.content)
 
     data = res.json()['items']
+    scoreSum = 0
+    scoreCount = 0
     for comment in data:
-        print("Comment: ", comment['contentText'], "\n")
-        print("SentimentScore: ", get_text_sentiment_helper(
-            comment['contentText']), "\n")
-    print(type(data))
+        currSentimentScore = get_text_sentiment_helper(comment['contentText'])
+        # print("Comment: ", comment['contentText'], "\n")
+        # print("SentimentScore: ", str(currSentimentScore), "\n")
+        scoreSum += currSentimentScore
+        scoreCount += 1
+
+    averageSentiment = scoreSum/scoreCount
+    print("Average Sentiment: ", str(averageSentiment))
 
     return JsonResponse(res.json())
 
