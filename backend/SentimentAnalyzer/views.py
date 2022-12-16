@@ -8,6 +8,7 @@ import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 import os
 import nltk
 import requests
+import json
 from nltk.sentiment import SentimentIntensityAnalyzer
 nltk.downloader.download('vader_lexicon')
 
@@ -48,7 +49,9 @@ def get_video_sentiment(request, videoId):
     averageSentiment = scoreSum/scoreCount
     print("Average Sentiment: ", str(averageSentiment))
 
-    return JsonResponse(res.json())
+    response = {"avgSentiment": averageSentiment}
+
+    return JsonResponse(json.loads(json.dumps(response)))
 
 
 def get_text_sentiment(request, text):
