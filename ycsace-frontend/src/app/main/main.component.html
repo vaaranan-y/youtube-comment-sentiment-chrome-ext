@@ -1,11 +1,16 @@
-<button mat-raised-button color="primary">Analyze Video Sentiment</button>
-<circle-progress 
-[percent]="sentimentValue"
-[radius]="100"
-[outerStrokeWidth]="16"
-[innerStrokeWidth]="8"
-[outerStrokeColor]="'#78C000'"
-[innerStrokeColor]="'#C7E596'"
-[animation]="true"
-[animationDuration]="300"
-></circle-progress>
+<div id="analyzer-body">
+    <button mat-raised-button color="primary" id="analyze-button">Analyze Video Sentiment</button>
+    <circle-progress 
+    [percent]="sentimentValue"
+    [radius]="100"
+    [outerStrokeWidth]="16"
+    [innerStrokeWidth]="8"
+    [outerStrokeColor]="'#6C0BA9'"
+    [innerStrokeColor]="'#A020F0'"
+    [animation]="true"
+    [animationDuration]="300"
+    [showSubtitle]="false"
+    ></circle-progress>
+    
+    
+</div>
