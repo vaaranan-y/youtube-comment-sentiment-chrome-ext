@@ -9,6 +9,7 @@ import os
 import nltk
 import requests
 import json
+import config
 from nltk.sentiment import SentimentIntensityAnalyzer
 nltk.downloader.download('vader_lexicon')
 
@@ -29,12 +30,12 @@ def get_text_sentiment_helper(text):
 def get_video_sentiment(request, videoId):
 
     # GET RESULTS FOR SENTIMENT ANALYSIS OF VIDEO
-    url = 'https://youtube-media-downloader.p.rapidapi.com/v2/video/comments?videoId=' + videoId
-    headers = {'X-RapidAPI-Key': 'edd8f2fcebmsh894c403ec9b1200p16168djsnf80ebdb7e7c0',
-               'X-RapidAPI-Host': 'youtube-media-downloader.p.rapidapi.com'}
+    url = config.api_url + videoId
+    headers = {'X-RapidAPI-Key': config.api_key,
+               'X-RapidAPI-Host': config.api_host}
     params = {'videoId': videoId}
     res = requests.get(url, params=params, headers=headers)
-    # print(res.content)
+    print(res.content)
 
     data = res.json()['items']
     scoreSum = 0

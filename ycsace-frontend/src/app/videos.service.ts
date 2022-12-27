@@ -9,8 +9,8 @@ export class VideosService {
 
   constructor(private http:HttpClient) { }
 
-  getVideoSentiment(){
-    let url = this.rootURL + '/sentiment-analyzer/get-video-sentiment/nWiQodhMvz4';
+  getVideoSentiment(videoId : string){
+    let url = this.rootURL + '/sentiment-analyzer/get-video-sentiment/' + videoId;
     return this.http.get(url);
 
   }
